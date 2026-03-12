@@ -1,5 +1,10 @@
+# Description of what this change include
+# Revision number - 2
+# Date - 03/12/2026
+
+
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Amazon Elastic Compute Cloud (EC2) Template
+Description: Amazon Elastic Compute Cloud (EC2) Template 
 Parameters:
   LatestAmiId:
     Type: "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>"
@@ -15,3 +20,9 @@ Resources:
       NetworkInterfaces:
         - AssociatePublicIpAddress: true # Indented correctly under the hyphen
           DeviceIndex: "0"               # Aligned with AssociatePublicIpAddress
+      BlockDeviceMappings: # This must be under 'Properties'
+        - DeviceName: /dev/sdm
+          Ebs:
+            VolumeType: gp2
+            DeleteOnTermination: false
+            VolumeSize: 20
